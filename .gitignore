@@ -1,0 +1,7 @@
+# Created by https://www.gitignore.io
+
+### Laravel ###
+/bootstrap/compiled.php
+.env.*.php
+.env.php
+
