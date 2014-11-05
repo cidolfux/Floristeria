@@ -15,9 +15,36 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function home()
 	{
-		return View::make('hello');
+
+		return View::make('homecontroller.home');
+
 	}
+
+    public function login(){
+
+        return View::make('homecontroller.login');
+
+    }
+
+    public function register(){
+
+        return View::make('homecontroller.register');
+
+    }
+
+    public function showPrivate(){
+
+        return View::make('homecontroller.private');
+
+    }
+
+    public function salir(){
+
+        Auth::user()->logout();
+        return Redirect::to('login');
+
+    }
 
 }
