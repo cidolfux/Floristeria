@@ -12,7 +12,7 @@
 */
 
 Route::any('/login',array('as' => 'login', 'uses' => 'HomeController@login'))->before("guest_user");
-Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@register'));
+Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@register'))->before("guest_user_register");;
 Route::any('/',array('as' => 'home', 'uses' => 'HomeController@home'));
 Route::any('/private',array('as' => 'private', 'uses' => 'HomeController@showPrivate'))->before("auth_user");
 Route::any('/salir',array('as' => 'salir', 'uses' => 'HomeController@salir'));

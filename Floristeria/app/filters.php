@@ -112,3 +112,13 @@ Route::filter('guest_user', function()
         return Redirect::to('/');
     }
 });
+
+Route::filter("guest_user_register",function(){
+
+    if(!Auth::user()->guest()){
+
+        return Redirect::to('private');
+
+    }
+
+});

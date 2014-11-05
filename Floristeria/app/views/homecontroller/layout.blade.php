@@ -45,10 +45,7 @@
 
                 );
 
-                if($vista == 'home'){
-                    $current['home'] = 'active';
-                }
-                else if($vista == 'login'){
+                if($vista == 'login'){
                     $current['login'] = 'active';
                 }
                 //registrar
@@ -57,9 +54,9 @@
                 }
 
               ?>
-                <li class="{{$current['register']}}"><a href="{{URL::route('register')}}">Registrar</a></li>
                 <?php if(Auth::user()->guest()){ ?>
                     <li class="{{$current['login']}}"><a href="{{URL::route('login')}}">Login </a></li>
+                    <li class="{{$current['register']}}"><a href="{{URL::route('register')}}">Registrar</a></li>
                 <?php } else { ?>
                     <li><a href="{{URL::route('private')}}">{{Auth::user()->get()->user}}</a></li>
                     <li>
