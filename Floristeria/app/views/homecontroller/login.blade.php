@@ -1,6 +1,7 @@
 @extends('homecontroller.layout')
 @section('contenido')
-<h1>Login</h1>
+<h1>Iniciar Sesion</h1>
+{{Session::get("message")}}
 {{Form::open(array(
             "method" => "POST",
             "action" => "HomeController@login",

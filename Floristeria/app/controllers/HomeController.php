@@ -47,4 +47,8 @@ class HomeController extends BaseController {
 
     }
 
+    public function confirmregister(){
+
+    }
+
 }

@@ -107,18 +107,10 @@ Route::filter("auth_user",function(){
 
 Route::filter('guest_user', function()
 {
+
     if (Auth::user()->check())
     {
         return Redirect::to('/');
-    }
-});
-
-Route::filter("guest_user_register",function(){
-
-    if(!Auth::user()->guest()){
-
-        return Redirect::to('private');
-
     }
 
 });
