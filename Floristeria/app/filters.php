@@ -110,7 +110,7 @@ Route::filter('guest_user', function()
 
     if (Auth::user()->check())
     {
-        return Redirect::to('/');
+        return Redirect::to('private');
     }
 
 });

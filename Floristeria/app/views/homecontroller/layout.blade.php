@@ -35,7 +35,7 @@
               <ul class="nav navbar-nav navbar-right">
               <?php
 
-                $vista = Route::currentRouteName();//Route::currentRouteAction(); //the last method return a string that is it the controller and the method (i.e. HomeController@home)
+                $vista = Route::currentRouteName();//Route::currentRouteAction(); //the last method return a string that is it the controller and the method (i.e. HomeController->home)
 
                 $current = array(
 
@@ -54,25 +54,8 @@
                 }
 
               ?>
-                <?php if(Auth::user()->guest()){ ?>
-                    <li class="{{$current['login']}}"><a href="{{URL::route('login')}}">Iniciar Sesion </a></li>
-                    <li class="{{$current['register']}}"><a href="{{URL::route('register')}}">Registrarme</a></li>
-                <?php } else { ?>
-                    <li><a href="{{URL::route('private')}}">{{Auth::user()->get()->user}}</a></li>
-                    <li>
-                        <div class="navbar-collapse collapse">
-                            {{Form::open(array(
-                                "method" => "POST",
-                                "action" => "HomeController@salir",
-                                "role" => "form",
-                                "class" => "navbar-form",
-                            ))}}
-                            {{Form::input("submit", "","Salir",array("class" => "btn btn-success"))}}
-                            {{Form::close()}}
-                        </div>
-                    </li>
-
-                <?php } ?>
+                <li class="{{$current['login']}}"><a href="{{URL::route('login')}}">Iniciar Sesion </a></li>
+                <li class="{{$current['register']}}"><a href="{{URL::route('register')}}">Registrarme</a></li>
                 <!-- Add another tag or elements here -->
               </ul>
             </div><!-- /.navbar-collapse -->

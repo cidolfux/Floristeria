@@ -40,13 +40,6 @@ class HomeController extends BaseController {
 
     }
 
-    public function salir(){
-
-        Auth::user()->logout();
-        return Redirect::to('login');
-
-    }
-
     public function confirmregister(){
 
     }

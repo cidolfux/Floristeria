@@ -11,13 +11,12 @@
 |
 */
 
-Route::any('/',array('as' => 'home', 'uses' => 'HomeController@home'));
+Route::any('/',array('as' => 'home', 'uses' => 'HomeController@home'))->before("guest_user");
 Route::any('/login',array('as' => 'login', 'uses' => 'HomeController@login'))->before("guest_user");
 Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@register'))->before("guest_user");;
-Route::any('/private',array('as' => 'private', 'uses' => 'HomeController@showPrivate'))->before("auth_user");
-Route::any('/salir',array('as' => 'salir', 'uses' => 'HomeController@salir'))->before("auth_user");
+Route::any('/private',array('as' => 'private', 'uses' => 'PrivateController@showMain'))->before("auth_user");
+Route::any('/salir',array('as' => 'salir', 'uses' => 'PrivateController@salir'))->before("auth_user");
 Route::any('/confirmregister',array('as'=>'confirmregister','uses'=>'HomeController@confirmregister'))->before("guest_user");
-
 Route::get('confirmregister/{email}/{key}',function($email, $key){
 
     if(urldecode($email) == Cookie::get("email") && urldecode($key) == Cookie::get("key")){
@@ -35,7 +34,6 @@ Route::get('confirmregister/{email}/{key}',function($email, $key){
     }
 
 });
-
 Route::post('/login',array('before' => 'csrf', function(){
 
     $user = array(
@@ -58,7 +56,6 @@ Route::post('/login',array('before' => 'csrf', function(){
     }
 
 }));
-
 Route::post('/register', array('before' => 'csrf', function(){
 
     $rules = array
@@ -140,7 +137,6 @@ Route::post('/register', array('before' => 'csrf', function(){
 }));
 
 /*Captura los errores 404*/
-
 App::missing(function($exception){
 
     return Response::view("error.error404",array(),404);
