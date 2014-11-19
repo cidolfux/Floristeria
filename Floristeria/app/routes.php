@@ -17,6 +17,7 @@ Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@regis
 Route::any('/private',array('as' => 'private', 'uses' => 'PrivateController@showMain'))->before("auth_user");
 Route::any('/salir',array('as' => 'salir', 'uses' => 'PrivateController@salir'))->before("auth_user");
 Route::any('/confirmregister',array('as'=>'confirmregister','uses'=>'HomeController@confirmregister'))->before("guest_user");
+Route::any('/shop',array('as'=>'shop', 'uses' => 'PrivateController@shop'))->before('auth_user');
 Route::get('confirmregister/{email}/{key}',function($email, $key){
 
     if(urldecode($email) == Cookie::get("email") && urldecode($key) == Cookie::get("key")){

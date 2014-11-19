@@ -3,6 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Bienvenido {{URL::route('private')}}">{{Auth::user()->get()->user}}</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}">
+    <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     @yield('head')
 </head>
 <body>

@@ -6,11 +6,77 @@
  * Time: 10:20 PM
  */
 
+require_once app_path().'/models/Flower.php';;
+
 class PrivateController extends BaseController {
+
+    /*Utils Methods*/
+
+    public function giveMainFlowers($rawQuery){
+
+
+        $flowers = array();
+        for($i = 0;$i<count($rawQuery);$i++){
+
+            $row = get_object_vars($rawQuery[$i]);
+            $flower = new Flower();
+            $flower->setCodigo($row['codigo']);
+            $flower->setNombre($row['nombre']);
+            $flower->setDescripcion($row['descripcion']);
+            $flower->setImagen($row['imagen']);
+            $flower->setImagenm($row['imagenm']);
+            $flowers[$i] = $flower;
+
+        }
+
+        return $flowers;
+
+    }
+
+    public function allImageForFeaturette($allFlowers){
+
+        $allImages = array();
+        for ($i = 0; $i < count($allFlowers); $i++) {
+
+            $flower = $allFlowers[$i];
+            $allImages[$i] =  "<img class='featurette-image img-responsive' src='".$flower->getImagenm()."'/>";
+
+        }
+
+        return $allImages;
+
+    }
+
+    public function allImageForSlider($allFlowers)
+    {
+
+        $allImages = array();
+        for ($i = 0; $i < count($allFlowers); $i++) {
+
+            $flower = $allFlowers[$i];
+            $allImages[$i] =  "<li><img src='".$flower->getImagen()."'/></li>";
+
+        }
+
+        return $allImages;
+
+    }
+
+    /*Methods for views*/
 
     public function showMain(){
 
-        return View::make('privatecontroller.main');
+        $results = DB::select('select flores.codigo, nombre, descripcion, imagen, imagenm, cantidadfinal from flores inner join stock on flores.codigo = stock.codigoflor order by stock.cantidadfinal asc limit 5');
+        $allMainFlowers = $this->giveMainFlowers($results);
+        $allImageForSlider = $this->allImageForSlider($allMainFlowers);
+        $allFeaturette = $this->allImageForFeaturette($allMainFlowers);
+        return View::make('privatecontroller.main', array('allFlowers' => $allMainFlowers, 'imagesSliders' => $allImageForSlider, 'allImageFeaturette' => $allFeaturette));
+
+    }
+
+    public function shop(){
+
+        return View::make('privatecontroller.shop');
 
     }
 

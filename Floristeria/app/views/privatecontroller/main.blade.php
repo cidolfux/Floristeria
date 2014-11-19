@@ -1,10 +1,6 @@
 @extends('privatecontroller.layout')
 @section('head')
 
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}">
-    <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- flexslider -->
     <link rel="stylesheet" href="{{asset('bower_components/flexslider/flexslider.css')}}" type="text/css" />
     <!-- jquery needed for mainly at flexslider -->
@@ -16,6 +12,7 @@
         $('.flexslider').flexslider();
       });
     </script>
+
 @stop
 @section('container')
     <!-- start the first container for first section -->
@@ -23,24 +20,20 @@
       <!-- sidebar -->
       <div class="row">
         </br>
+
         <div class="col-xs-4">
-           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+          <ul class="nav nav-sidebar">
+            <li><a href="{{URL::route('shop')}}">Shop</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
+            <li><a href="#">not implement yet</a></li>
+            <li><a href="#">not implement yet</a></li>
+            <li><a href="#">not implement yet</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
+            <li><a href="#">not implement yet</a></li>
+            <li><a href="#">not implement yet</a></li>
+            <li><a href="#">not implement yet</a></li>
           </ul>
         </div>
         <!-- finish sidebar -->
@@ -49,15 +42,11 @@
           <!-- Place somewhere in the <body> of your page -->
           <div class="flexslider">
             <ul class="slides">
-              <li>
-                <img src="http://2.bp.blogspot.com/-hIKD_Rdq-Zw/UIgARYm-g0I/AAAAAAAAI8A/mSlUHfvGogA/s1600/camelia4.jpg" />
-              </li>
-              <li>
-                <img src="http://3.bp.blogspot.com/-fknU_8G3r7M/UUijn7uIijI/AAAAAAAAEug/WDeKVqi2t0c/s640/imagens-imagens-de-flores-30356b.jpg" />
-              </li>
-              <li>
-                <img src="http://foroarchivos.infojardin.com/foro-jardineros/www.infojardin.com/fotos/albums/userpics/IMG_0055~0.JPG" />
-              </li>
+              <?php
+                foreach($imagesSliders as $imageSlider){
+                    echo($imageSlider);
+                }
+              ?>
             </ul>
           </div>
         </div>
@@ -70,47 +59,29 @@
     <div class="container">
       <!-- start the row-->
       <div class="row">
-        <hr class="featurette-divider">
-        <!-- start a row featurette -->
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="http://flores.florpedia.com/images/fotos-claveles-pq.jpg" alt="Generic placeholder image">
-          </div>
-        </div>
-        <!-- finish a row featurette -->
-        <hr class="featurette-divider">
-        <!-- start a row featurette -->
-        <div class="row featurette">
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="http://flores.florpedia.com/images/fotos-flores-azules-pq.jpg" alt="Generic placeholder image">
-          </div>
-          <div class="col-md-7">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-        </div>
-        <!-- finish a row featurette -->
-        <hr class="featurette-divider">
-        <!-- start a row featurette -->
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="http://flores.florpedia.com/images/fotos-flores-camelias-pq.jpg" alt="Generic placeholder image">
-          </div>
-        </div>
-        <!-- finish a row featurette -->
+
+        <?php
+            foreach($allFlowers as $item){
+                $featurette = "<hr class='featurette-divider'>
+                               <div class='row featurette'>
+                                 <div class='col-md-7'>
+                                   <h2 class='featurette-heading'>Floristeria - <span class='text-muted'>".$item->getNombre()."</span></h2>
+                                   <p class='lead'>".$item->getDescripcion()."</p>
+                               </div>
+                                 <div class='col-md-5'>"."<img class='img-circle' alt='Generic placeholder image' style='width: 500px; height: 500px;' src='".$item->getImagenm()."'/>"."</div>
+                               </div>";
+
+                echo($featurette);
+
+            }
+
+        ?>
+
         <hr class="featurette-divider">
         <!-- start the footer -->
         <footer>
           <p class="pull-right"><a href="#">Back to top</a></p>
-          <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+          <p>&copy; 2014 Flowers. &middot; <a href="#">Politica</a> &middot; <a href="#">Terminos</a></p>
         </footer>
         <!-- finish the footer -->
       </div>
