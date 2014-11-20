@@ -56,7 +56,7 @@
     </div>
     <!-- finish the container for first section -->
     <!-- start the container for second section -->
-    <div class="container">
+    <div class="container marketing">
       <!-- start the row-->
       <div class="row">
 

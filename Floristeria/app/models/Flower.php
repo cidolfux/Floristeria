@@ -13,6 +13,40 @@ class Flower {
     private $descripcion;
     private $imagen;
     private $imagenm;
+    private $cantidadFinal;
+    private $precio;
+
+    /**
+     * @return mixed
+     */
+    public function getCantidadFinal()
+    {
+        return $this->catidadFinal;
+    }
+
+    /**
+     * @param mixed $catidadFinal
+     */
+    public function setCantidadFinal($catidadFinal)
+    {
+        $this->catidadFinal = $catidadFinal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * @param mixed $precio
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+    }
 
     /**
      * @return mixed

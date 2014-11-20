@@ -12,7 +12,7 @@ class PrivateController extends BaseController {
 
     /*Utils Methods*/
 
-    public function giveMainFlowers($rawQuery){
+    public function giveFlowers($rawQuery){
 
 
         $flowers = array();
@@ -25,6 +25,8 @@ class PrivateController extends BaseController {
             $flower->setDescripcion($row['descripcion']);
             $flower->setImagen($row['imagen']);
             $flower->setImagenm($row['imagenm']);
+            $flower->setCantidadFinal($row['cantidadfinal']);
+            $flower->setPrecio($row['precio']);
             $flowers[$i] = $flower;
 
         }
@@ -40,6 +42,20 @@ class PrivateController extends BaseController {
 
             $flower = $allFlowers[$i];
             $allImages[$i] =  "<img class='featurette-image img-responsive' src='".$flower->getImagenm()."'/>";
+
+        }
+
+        return $allImages;
+
+    }
+
+    public function giveItemsForShop($allFlowers){
+
+        $allImages = array();
+        for ($i = 0; $i < count($allFlowers); $i++) {
+            $flower = $allFlowers[$i];
+            $allImages[$i] =  array("codigo" => $flower->getCodigo(),"html"=>"<img class='img-circle' alt='Generic placeholder image' style='width: 240px; height: 240px;' src='".$flower->getImagenm()."'/><h2>".
+                $flower->getNombre()."</h2><p>".$flower->getDescripcion()."</p><p><a class='btn btn-default' onclick='return theFunction();' href='".""."' role='button'>"."Price: ".$flower->getPrecio()."</a></p>", "cantidad" => $flower->getCantidadFinal());
 
         }
 
@@ -67,7 +83,7 @@ class PrivateController extends BaseController {
     public function showMain(){
 
         $results = DB::select('select flores.codigo, nombre, descripcion, imagen, imagenm, cantidadfinal from flores inner join stock on flores.codigo = stock.codigoflor order by stock.cantidadfinal asc limit 5');
-        $allMainFlowers = $this->giveMainFlowers($results);
+        $allMainFlowers = $this->giveFlowers($results);
         $allImageForSlider = $this->allImageForSlider($allMainFlowers);
         $allFeaturette = $this->allImageForFeaturette($allMainFlowers);
         return View::make('privatecontroller.main', array('allFlowers' => $allMainFlowers, 'imagesSliders' => $allImageForSlider, 'allImageFeaturette' => $allFeaturette));
@@ -76,7 +92,10 @@ class PrivateController extends BaseController {
 
     public function shop(){
 
-        return View::make('privatecontroller.shop');
+        $results = DB::select('select flores.codigo, nombre, descripcion, imagen, imagenm, cantidadfinal, precio from flores inner join stock on flores.codigo = stock.codigoflor order by stock.cantidadfinal asc');
+        $allFlowers = $this->giveFlowers($results);
+        $allItemsForShop = $this->giveItemsForShop($allFlowers);
+        return View::make('privatecontroller.shop', array('allItems' => $allItemsForShop));
 
     }
 
