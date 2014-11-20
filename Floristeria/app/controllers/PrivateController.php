@@ -54,8 +54,8 @@ class PrivateController extends BaseController {
         $allImages = array();
         for ($i = 0; $i < count($allFlowers); $i++) {
             $flower = $allFlowers[$i];
-            $allImages[$i] =  array("codigo" => $flower->getCodigo(),"html"=>"<img class='img-circle' alt='Generic placeholder image' style='width: 240px; height: 240px;' src='".$flower->getImagenm()."'/><h2>".
-                $flower->getNombre()."</h2><p>".$flower->getDescripcion()."</p><p><a class='btn btn-default' onclick='return theFunction();' href='".""."' role='button'>"."Price: ".$flower->getPrecio()."</a></p>", "cantidad" => $flower->getCantidadFinal());
+            $allImages[$i] =  array("codigo" => $flower->getCodigo(),"html"=>"<br><br><img class='img-circle' alt='Generic placeholder image' style='width: 240px; height: 240px;' src='".$flower->getImagenm()."'/><h2>".
+                $flower->getNombre()."</h2><p>".$flower->getDescripcion()."</br><strong>Precio: ".$flower->getPrecio()."</strong></p><p><a class='btn btn-default' onclick='return theFunction();' href='".""."' role='button'>Agregar al carrito</a></p></br>", "cantidad" => $flower->getCantidadFinal());
 
         }
 
