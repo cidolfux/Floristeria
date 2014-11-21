@@ -25,16 +25,6 @@
           <ul class="nav nav-sidebar">
             <li><a href="{{URL::route('shop')}}">Shop</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="#">not implement yet</a></li>
-            <li><a href="#">not implement yet</a></li>
-            <li><a href="#">not implement yet</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="#">not implement yet</a></li>
-            <li><a href="#">not implement yet</a></li>
-            <li><a href="#">not implement yet</a></li>
-          </ul>
         </div>
         <!-- finish sidebar -->
         <!-- flexslider -->

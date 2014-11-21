@@ -55,7 +55,7 @@ class PrivateController extends BaseController {
         for ($i = 0; $i < count($allFlowers); $i++) {
             $flower = $allFlowers[$i];
             $allImages[$i] =  array("codigo" => $flower->getCodigo(),"html"=>"<br><br><img class='img-circle' alt='Generic placeholder image' style='width: 240px; height: 240px;' src='".$flower->getImagenm()."'/><h2>".
-                $flower->getNombre()."</h2><p>".$flower->getDescripcion()."</br><strong>Precio: ".$flower->getPrecio()."</strong></p><p><a class='btn btn-default' onclick='return theFunction();' href='".""."' role='button'>Agregar al carrito</a></p></br>", "cantidad" => $flower->getCantidadFinal());
+                $flower->getNombre()."</h2><p>".$flower->getDescripcion()."</p><br><p><strong>Precio: $".$flower->getPrecio()."</p><p>Cantidad: <lb id='cantidad'>".$flower->getCantidadFinal()."</lb></strong></p><br><a id='addButton' class='btn btn-default' onclick='return theFunction();' href='".""."' role='button'>Agregar al carrito</a></p></br>");
 
         }
 
@@ -82,7 +82,7 @@ class PrivateController extends BaseController {
 
     public function showMain(){
 
-        $results = DB::select('select flores.codigo, nombre, descripcion, imagen, imagenm, cantidadfinal from flores inner join stock on flores.codigo = stock.codigoflor order by stock.cantidadfinal asc limit 5');
+        $results = DB::select('select flores.codigo, nombre, descripcion, imagen, imagenm, cantidadfinal, precio from flores inner join stock on flores.codigo = stock.codigoflor order by stock.cantidadfinal asc limit 5');
         $allMainFlowers = $this->giveFlowers($results);
         $allImageForSlider = $this->allImageForSlider($allMainFlowers);
         $allFeaturette = $this->allImageForFeaturette($allMainFlowers);
@@ -103,6 +103,12 @@ class PrivateController extends BaseController {
 
         Auth::user()->logout();
         return Redirect::to('login');
+
+    }
+
+    public function bill(){
+
+        return View::make('privatecontroller.bill');
 
     }
 

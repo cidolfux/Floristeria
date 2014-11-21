@@ -15,17 +15,17 @@
         $i = count($allItems);
         for($i;$i>3;$i = $i-3){
             $itemsForShop = $itemsForShop."<div class='row'>
-                                <div class='col-lg-4'>
+                                <div id = 'row' class='col-lg-4' col-lg-height>
                                     ".$allItems[$i-1]['html']."
                                 </div>
                             ".
                             "
-                                <div class='col-lg-4'>
+                                <div id = 'row' class='col-lg-4 col-lg-height'>
                                     ".$allItems[$i-2]['html']."
                                 </div>
                             ".
                             "
-                                <div class='col-lg-4'>
+                                <div id = 'row' class='col-lg-4 col-lg-height'>
                                     ".$allItems[$i-3]['html']."
                                 </div>
                             </div>";

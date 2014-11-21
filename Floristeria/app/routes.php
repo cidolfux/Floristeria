@@ -13,8 +13,9 @@
 
 Route::any('/',array('as' => 'home', 'uses' => 'HomeController@home'))->before("guest_user");
 Route::any('/login',array('as' => 'login', 'uses' => 'HomeController@login'))->before("guest_user");
-Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@register'))->before("guest_user");;
+Route::any('/register',array('as' => 'register', 'uses' => 'HomeController@register'))->before("guest_user");
 Route::any('/private',array('as' => 'private', 'uses' => 'PrivateController@showMain'))->before("auth_user");
+Route::any('/bill',array('as' => 'bill', 'uses' => 'PrivateController@bill'))->before("auth_user");
 Route::any('/salir',array('as' => 'salir', 'uses' => 'PrivateController@salir'))->before("auth_user");
 Route::any('/confirmregister',array('as'=>'confirmregister','uses'=>'HomeController@confirmregister'))->before("guest_user");
 Route::any('/shop',array('as'=>'shop', 'uses' => 'PrivateController@shop'))->before('auth_user');
